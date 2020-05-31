@@ -23,9 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post("/guardarData/{videogame}", function (Request $request, $videogame) {
     //buscamos el videogame y guardamos la data
     $video = Videogames::where('name', $videogame)->firstOrFail();
-    //convertimos las opciones del json en una variable php
-    $opciones = json_decode($video->options);
-    $ranking = Scores::where('nombre',  $request->nombre)->first();
+    $ranking = Scores::where('nombre',  $request->nombre)->where('videogame_id', $video->id)->first();
     if ($ranking != null) {
         $ranking->score = $request->score;
         $ranking->save();
