@@ -24,7 +24,6 @@ Route::post("/guardarData/{videogame}", function (Request $request, $videogame) 
     //buscamos el videogame y guardamos la data
     $video = Videogames::where('name', $videogame)->firstOrFail();
     //convertimos las opciones del json en una variable php
-    $opciones = json_decode($video->options);
     $ranking = Scores::where('nombre',  $request->nombre)->first();
     if ($ranking != null) {
         $ranking->score = $request->score;
