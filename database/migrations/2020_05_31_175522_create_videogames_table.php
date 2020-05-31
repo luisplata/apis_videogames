@@ -16,7 +16,6 @@ class CreateVideogamesTable extends Migration
         Schema::create('videogames', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100);
-            $table->json('options')->default('{"scores":[]}');
             $table->timestamps();
         });
     }
