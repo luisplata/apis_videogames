@@ -54,6 +54,7 @@ Route::get("/score/best/{videogame}/{numtop?}", function ($videogame, $muntop = 
 });
 
 Route::get("/score/{videogame}/{name}", function ($videogame, $nombre) {
-    $video = Videogames::where('name', $videogame)->firstOrFail();
-    return $video->score;
+    $video = Scores::where('nombre', $nombre)->firstOrFail();
+    $video->videogame;
+    return $video;
 });
