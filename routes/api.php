@@ -23,7 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post("/guardarData/{videogame}", function (Request $request, $videogame) {
     //buscamos el videogame y guardamos la data
     $video = Videogames::where('name', $videogame)->firstOrFail();
-    $ranking = Scores::where('nombre',  $request->nombre)->where('videogame_id', $video->id)->first();
+    $ranking = Scores::where('nombre',  $request->nombre)->where('videogames_id', $video->id)->first();
     if ($ranking != null) {
         $ranking->score = $request->score;
         $ranking->save();
