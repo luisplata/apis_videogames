@@ -24,6 +24,7 @@ Route::post("/guardarData/{videogame}", function (Request $request, $videogame) 
     //buscamos el videogame y guardamos la data
     $video = Videogames::where('name', $videogame)->firstOrFail();
     //convertimos las opciones del json en una variable php
+    $opciones = json_decode($video->options);
     $ranking = Scores::where('nombre',  $request->nombre)->first();
     if ($ranking != null) {
         $ranking->score = $request->score;
@@ -54,13 +55,5 @@ Route::get("/score/best/{videogame}/{numtop?}", function ($videogame, $muntop = 
 
 Route::get("/score/{videogame}/{name}", function ($videogame, $nombre) {
     $video = Videogames::where('name', $videogame)->firstOrFail();
-    $opciones = json_decode($video->options);
-    $participante = new stdClass();
-    foreach ($opciones->scores as $key => $value) {
-        if ($value->nombre == $nombre) {
-            $participante->nombre = $value->nombre;
-            $participante->score = $value->score;
-        }
-    }
-    return json_encode($participante);
+    return $video->score;
 });
