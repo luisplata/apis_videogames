@@ -48,7 +48,10 @@ Route::get("/score/best/{videogame}/{numtop?}", function ($videogame, $muntop = 
     $video = Videogames::where('name', $videogame)->firstOrFail();
     $scores = Scores::where('videogames_id', $video->id)->orderBy('score', 'desc')->limit($muntop)
         ->get();
-    return $scores[$muntop-1];
+    if (count($scores) < $muntop) {
+        return null;
+    }
+    return $scores[$muntop - 1];
 });
 
 Route::get("/score/{videogame}/{name}", function ($videogame, $nombre) {
