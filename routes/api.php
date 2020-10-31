@@ -44,9 +44,9 @@ Route::post("/crearVideojuego", function (Request $request) {
     return $v;
 });
 
-Route::get("/score/best/{videogame}/{numtop?}", function ($videogame, $muntop = 10) {
+Route::get("/score/best/{videogame}/{numtop?}/{descendiente?}", function ($videogame, $muntop = 10, $descendiente = 1) {
     $video = Videogames::where('name', $videogame)->firstOrFail();
-    $scores = Scores::where('videogames_id', $video->id)->orderBy('score', 'desc')->limit($muntop)
+    $scores = Scores::where('videogames_id', $video->id)->orderBy('score', $descendiente==1?'desc':'asc')->limit($muntop)
         ->get();
     return $scores;
 });
