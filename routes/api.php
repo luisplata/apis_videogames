@@ -1,7 +1,7 @@
 <?php
 
-use App\Scores;
-use App\Videogames;
+use App\Models\Scores;
+use App\Models\Videogames;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-//despues le hacemos la seguridad de 
+//despues le hacemos la seguridad de
 Route::post("/guardarData/{videogame}", function (Request $request, $videogame) {
     //buscamos el videogame y guardamos la data
     $video = Videogames::where('name', $videogame)->firstOrFail();
