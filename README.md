@@ -1,6 +1,3 @@
-Test From Readme for show in Game! Better here?
-
-Now, try to formats and other features (enter)
-List:
-- Item 1
-- Item 2
+The new version of Galaga is being built.
+I will try to make this new version compatible with the old version.
+And I hope you have fun with the new version.
