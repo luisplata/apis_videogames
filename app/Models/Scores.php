@@ -9,6 +9,6 @@ class Scores extends Model
     //
     public function videogame()
     {
-        return $this->belongsTo('App\Videogames','videogames_id');
+        return $this->belongsTo('App\Models\Videogames','videogames_id');
     }
 }
